@@ -5,12 +5,15 @@ import { Badge } from './ui/badge';
 import { ShoppingCart, Eye, Filter, Loader2 } from 'lucide-react';
 import { productsAPI } from '../services/api';
 import { useToast } from '../hooks/use-toast';
+import { PaymentModal } from './PaymentModal';
 
 export const Products = () => {
   const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('Todos');
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState(['Todos']);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -41,11 +44,17 @@ export const Products = () => {
   };
 
   const handleBuyClick = (product) => {
-    // Mock da funcionalidade de compra - será implementada
+    setSelectedProduct(product);
+    setIsPaymentModalOpen(true);
+  };
+
+  const handlePaymentSuccess = (paymentData) => {
     toast({
-      title: "Produto adicionado!",
-      description: `"${product.name}" foi adicionado ao seu interesse. Entre em contato conosco para finalizar a compra!`,
+      title: "🎉 Pagamento realizado!",
+      description: `Compra de "${selectedProduct.name}" finalizada com sucesso!`,
     });
+    setIsPaymentModalOpen(false);
+    setSelectedProduct(null);
   };
 
   const handleViewMore = (product) => {
@@ -167,6 +176,17 @@ export const Products = () => {
             </p>
           </div>
         )}
+
+        {/* Payment Modal */}
+        <PaymentModal
+          product={selectedProduct}
+          isOpen={isPaymentModalOpen}
+          onClose={() => {
+            setIsPaymentModalOpen(false);
+            setSelectedProduct(null);
+          }}
+          onSuccess={handlePaymentSuccess}
+        />
       </div>
     </section>
   );
