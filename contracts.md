@@ -18,13 +18,9 @@
 - `GET /api/products` - Listar todos os produtos
 - `GET /api/products?category={categoria}` - Filtrar por categoria
 - `GET /api/products/{id}` - Buscar produto específico
-- `POST /api/products` - Criar produto (admin)
-- `PUT /api/products/{id}` - Atualizar produto (admin)
-- `DELETE /api/products/{id}` - Deletar produto (admin)
 
 ### 2. Contato
 - `POST /api/contact` - Enviar mensagem de contato
-- `GET /api/contact` - Listar mensagens (admin)
 
 ### 3. Informações da Empresa
 - `GET /api/company-info` - Buscar informações da empresa
@@ -71,10 +67,6 @@
         "instagram": str,
         "facebook": str,
         "tiktok": str
-    },
-    "contact_info": {
-        "phone": str,
-        "address": str
     }
 }
 ```
@@ -85,20 +77,8 @@
 1. Remover importação de `mock.js` dos componentes
 2. Substituir dados mock por chamadas à API
 3. Adicionar loading states e error handling
-4. Implementar toast notifications para feedback
 
 ### Endpoints a serem consumidos
 - Products.jsx: `GET /api/products` e filtros
 - Contact.jsx: `POST /api/contact`
 - Hero.jsx e About.jsx: `GET /api/company-info`
-
-### Estados de Loading/Error
-- Produtos: loading spinner durante fetch
-- Formulário: desabilitar botão durante submit
-- Toast de sucesso/erro para todas operações
-
-## Funcionalidades Extras para Implementar
-- Seed inicial do banco com produtos do mock.js
-- Validação de dados no backend
-- Rate limiting para formulário de contato
-- Logs de todas as operações
