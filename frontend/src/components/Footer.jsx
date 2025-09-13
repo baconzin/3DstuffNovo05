@@ -137,7 +137,7 @@ export const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Contato</h3>
             <div className="space-y-2 text-gray-300">
-              <p>📧 {companyInfo.email}</p>
+              <p>📧 {companyInfo?.email || "contato@3dstuff.com.br"}</p>
               <p>📱 +55 (11) 99999-9999</p>
               <p>📍 São Paulo, SP - Brasil</p>
             </div>
