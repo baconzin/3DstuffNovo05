@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import { Separator } from './ui/separator';
 import { ShoppingBag, Instagram, Facebook, Music } from 'lucide-react';
-import { companyInfo } from '../mock';
+import { companyAPI } from '../services/api';
 
 export const Footer = () => {
   const scrollToSection = (sectionId) => {
