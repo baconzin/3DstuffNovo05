@@ -5,6 +5,30 @@ import { ShoppingBag, Instagram, Facebook, Music } from 'lucide-react';
 import { companyAPI } from '../services/api';
 
 export const Footer = () => {
+  const [companyInfo, setCompanyInfo] = useState(null);
+
+  useEffect(() => {
+    loadCompanyInfo();
+  }, []);
+
+  const loadCompanyInfo = async () => {
+    try {
+      const data = await companyAPI.getInfo();
+      setCompanyInfo(data);
+    } catch (error) {
+      console.error('Erro ao carregar informações da empresa:', error);
+      // Fallback para dados padrão
+      setCompanyInfo({
+        name: "3D Stuff",
+        email: "contato@3dstuff.com.br",
+        social_media: {
+          instagram: "@3dstuff",
+          facebook: "3DStuff",
+          tiktok: "@3dstuff"
+        }
+      });
+    }
+  };
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
