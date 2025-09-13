@@ -218,7 +218,7 @@ class EmailService:
                         </div>
                         
                         <p>Se sua dúvida for urgente, entre em contato pelo WhatsApp:</p>
-                        <p>📱 (11) 99999-9999</p>
+                        <p>📱 (19) 97163-6969</p>
                         
                         <p>Atenciosamente,<br><strong>Equipe 3D Stuff</strong></p>
                     </div>
