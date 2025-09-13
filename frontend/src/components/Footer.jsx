@@ -39,9 +39,9 @@ export const Footer = () => {
   const handleSocialClick = (platform) => {
     // Mock dos links das redes sociais - será implementado com links reais
     const urls = {
-      instagram: `https://instagram.com/${companyInfo.socialMedia.instagram}`,
-      facebook: `https://facebook.com/${companyInfo.socialMedia.facebook}`,
-      tiktok: `https://tiktok.com/${companyInfo.socialMedia.tiktok}`
+      instagram: `https://instagram.com/${companyInfo?.social_media?.instagram || '@3dstuff'}`,
+      facebook: `https://facebook.com/${companyInfo?.social_media?.facebook || '3DStuff'}`,
+      tiktok: `https://tiktok.com/${companyInfo?.social_media?.tiktok || '@3dstuff'}`
     };
     
     if (urls[platform]) {
