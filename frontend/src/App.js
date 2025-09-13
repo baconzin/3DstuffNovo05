@@ -7,6 +7,8 @@ import { Products } from "./components/Products";
 import { About } from "./components/About";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
+import { WhatsAppFloat } from "./components/WhatsAppFloat";
+import { WhatsAppBanner } from "./components/WhatsAppBanner";
 import { Toaster } from "./components/ui/sonner";
 
 const Home = () => {
@@ -20,6 +22,11 @@ const Home = () => {
         <Contact />
       </main>
       <Footer />
+      
+      {/* WhatsApp Components */}
+      <WhatsAppFloat />
+      <WhatsAppBanner />
+      
       <Toaster />
     </>
   );
