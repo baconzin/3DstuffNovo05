@@ -3,6 +3,9 @@ from sqlalchemy.orm import Session
 from database import get_db
 from payment_models import PaymentRequest, PaymentResponse, PaymentStatusResponse, MercadoPagoPayment, WebhookNotification
 from mercado_pago_service import MercadoPagoService
+from email_service import email_service
+from inventory_service import inventory_service
+from webhook_service import webhook_service
 from typing import Dict, Any
 import logging
 import json
