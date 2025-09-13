@@ -231,13 +231,10 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Product APIs"
-    - "Contact Form API"
-    - "Company Information API"
     - "Product Catalog Integration"
     - "Contact Form Integration"
   stuck_tasks: []
-  test_all: true
+  test_all: false
   test_priority: "high_first"
 
 agent_communication:
