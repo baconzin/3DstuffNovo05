@@ -81,7 +81,7 @@ class EmailService:
                         
                         <p>Tem alguma dúvida? Entre em contato conosco:</p>
                         <p>📧 Email: contato@3dstuff.com.br</p>
-                        <p>📱 WhatsApp: (11) 99999-9999</p>
+                        <p>📱 WhatsApp: (19) 97163-6969</p>
                         
                         <a href="https://wa.me/5519971636969?text=Olá! Tenho uma dúvida sobre meu pedido {payment_id}" class="button">
                             💬 Falar no WhatsApp
