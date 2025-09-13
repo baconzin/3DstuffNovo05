@@ -4,8 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { Textarea } from './ui/textarea';
-import { MessageCircle, Mail, MapPin, Phone } from 'lucide-react';
-import { companyInfo, contactFormFields } from '../mock';
+import { MessageCircle, Mail, MapPin, Phone, Loader2 } from 'lucide-react';
+import { contactAPI } from '../services/api';
 import { useToast } from '../hooks/use-toast';
 
 export const Contact = () => {
@@ -15,6 +15,10 @@ export const Contact = () => {
     email: '',
     message: ''
   });
+  const [loading, setLoading] = useState(false);
+
+  const whatsappNumber = "5511999999999"; // Número do WhatsApp
+  const companyEmail = "contato@3dstuff.com.br";
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -24,27 +28,54 @@ export const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Mock da submissão do formulário - será implementada no backend
-    console.log('Form submitted:', formData);
     
-    toast({
-      title: "Mensagem enviada!",
-      description: "Entraremos em contato em breve.",
-    });
+    if (!formData.name || !formData.email || !formData.message) {
+      toast({
+        title: "Erro",
+        description: "Por favor, preencha todos os campos obrigatórios.",
+        variant: "destructive"
+      });
+      return;
+    }
 
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      message: ''
-    });
+    try {
+      setLoading(true);
+      
+      await contactAPI.send({
+        name: formData.name,
+        email: formData.email,
+        message: formData.message
+      });
+
+      toast({
+        title: "Mensagem enviada!",
+        description: "Recebemos sua mensagem e entraremos em contato em breve.",
+      });
+
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        message: ''
+      });
+
+    } catch (error) {
+      console.error('Erro ao enviar mensagem:', error);
+      toast({
+        title: "Erro",
+        description: "Não foi possível enviar sua mensagem. Tente novamente ou entre em contato pelo WhatsApp.",
+        variant: "destructive"
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleWhatsAppClick = () => {
     const message = encodeURIComponent("Olá! Gostaria de saber mais sobre os produtos da 3D Stuff.");
-    const whatsappUrl = `https://wa.me/${companyInfo.whatsapp}?text=${message}`;
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
     window.open(whatsappUrl, '_blank');
   };
 
@@ -71,43 +102,73 @@ export const Contact = () => {
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
-                {contactFormFields.map((field) => (
-                  <div key={field.name} className="space-y-2">
-                    <Label htmlFor={field.name} className="text-gray-700 font-medium">
-                      {field.label} {field.required && <span className="text-orange-500">*</span>}
-                    </Label>
-                    {field.type === 'textarea' ? (
-                      <Textarea
-                        id={field.name}
-                        name={field.name}
-                        value={formData[field.name]}
-                        onChange={handleInputChange}
-                        required={field.required}
-                        rows={4}
-                        className="resize-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
-                        placeholder="Digite sua mensagem..."
-                      />
-                    ) : (
-                      <Input
-                        id={field.name}
-                        name={field.name}
-                        type={field.type}
-                        value={formData[field.name]}
-                        onChange={handleInputChange}
-                        required={field.required}
-                        className="focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
-                        placeholder={field.type === 'email' ? 'seu@email.com' : 'Seu nome'}
-                      />
-                    )}
-                  </div>
-                ))}
+                <div className="space-y-2">
+                  <Label htmlFor="name" className="text-gray-700 font-medium">
+                    Nome <span className="text-orange-500">*</span>
+                  </Label>
+                  <Input
+                    id="name"
+                    name="name"
+                    type="text"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                    disabled={loading}
+                    className="focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    placeholder="Seu nome"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="email" className="text-gray-700 font-medium">
+                    E-mail <span className="text-orange-500">*</span>
+                  </Label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    disabled={loading}
+                    className="focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    placeholder="seu@email.com"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="message" className="text-gray-700 font-medium">
+                    Mensagem <span className="text-orange-500">*</span>
+                  </Label>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    required
+                    disabled={loading}
+                    rows={4}
+                    className="resize-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    placeholder="Digite sua mensagem..."
+                  />
+                </div>
                 
                 <Button 
                   type="submit" 
+                  disabled={loading}
                   className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 transition-all duration-200 transform hover:scale-105"
                 >
-                  <Mail className="mr-2 h-5 w-5" />
-                  Enviar Mensagem
+                  {loading ? (
+                    <>
+                      <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                      Enviando...
+                    </>
+                  ) : (
+                    <>
+                      <Mail className="mr-2 h-5 w-5" />
+                      Enviar Mensagem
+                    </>
+                  )}
                 </Button>
               </form>
             </CardContent>
@@ -145,7 +206,7 @@ export const Contact = () => {
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900">E-mail</h3>
-                      <p className="text-gray-600">{companyInfo.email}</p>
+                      <p className="text-gray-600">{companyEmail}</p>
                     </div>
                   </div>
 

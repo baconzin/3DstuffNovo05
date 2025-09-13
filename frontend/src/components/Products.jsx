@@ -1,28 +1,73 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
-import { ShoppingCart, Eye, Filter } from 'lucide-react';
-import { products } from '../mock';
+import { ShoppingCart, Eye, Filter, Loader2 } from 'lucide-react';
+import { productsAPI } from '../services/api';
+import { useToast } from '../hooks/use-toast';
 
 export const Products = () => {
+  const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('Todos');
-  
-  const categories = ['Todos', ...new Set(products.map(product => product.category))];
-  
-  const filteredProducts = selectedCategory === 'Todos' 
-    ? products 
-    : products.filter(product => product.category === selectedCategory);
+  const [loading, setLoading] = useState(true);
+  const [categories, setCategories] = useState(['Todos']);
+  const { toast } = useToast();
+
+  useEffect(() => {
+    loadProducts();
+  }, [selectedCategory]);
+
+  const loadProducts = async () => {
+    try {
+      setLoading(true);
+      const data = await productsAPI.getAll(selectedCategory);
+      setProducts(data);
+      
+      // Extrair categorias únicas
+      if (selectedCategory === 'Todos') {
+        const uniqueCategories = ['Todos', ...new Set(data.map(product => product.category))];
+        setCategories(uniqueCategories);
+      }
+    } catch (error) {
+      console.error('Erro ao carregar produtos:', error);
+      toast({
+        title: "Erro",
+        description: "Não foi possível carregar os produtos. Tente novamente.",
+        variant: "destructive"
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleBuyClick = (product) => {
-    // Mock da funcionalidade de compra - será implementada no backend
-    alert(`Produto "${product.name}" adicionado ao carrinho! (Funcionalidade será implementada)`);
+    // Mock da funcionalidade de compra - será implementada
+    toast({
+      title: "Produto adicionado!",
+      description: `"${product.name}" foi adicionado ao seu interesse. Entre em contato conosco para finalizar a compra!`,
+    });
   };
 
   const handleViewMore = (product) => {
     // Mock para visualizar mais detalhes
-    alert(`Visualizando detalhes de "${product.name}" (Será implementado)`);
+    toast({
+      title: "Detalhes do produto",
+      description: `Visualizando "${product.name}". Funcionalidade de detalhes completos será implementada em breve.`,
+    });
   };
+
+  if (loading) {
+    return (
+      <section id="products" className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center">
+            <Loader2 className="mx-auto h-12 w-12 animate-spin text-orange-500" />
+            <p className="mt-4 text-gray-600">Carregando produtos...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="products" className="py-20 bg-white">
@@ -61,7 +106,7 @@ export const Products = () => {
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProducts.map((product) => (
+          {products.map((product) => (
             <Card 
               key={product.id} 
               className="group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-0 shadow-md overflow-hidden"
@@ -115,7 +160,7 @@ export const Products = () => {
           ))}
         </div>
 
-        {filteredProducts.length === 0 && (
+        {products.length === 0 && (
           <div className="text-center py-12">
             <p className="text-gray-500 text-lg">
               Nenhum produto encontrado para a categoria selecionada.

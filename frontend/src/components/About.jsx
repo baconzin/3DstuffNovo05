@@ -1,9 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from './ui/card';
-import { Target, Lightbulb, Award, Heart } from 'lucide-react';
-import { companyInfo } from '../mock';
+import { Target, Lightbulb, Award, Heart, Loader2 } from 'lucide-react';
+import { companyAPI } from '../services/api';
 
 export const About = () => {
+  const [companyInfo, setCompanyInfo] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadCompanyInfo();
+  }, []);
+
+  const loadCompanyInfo = async () => {
+    try {
+      const data = await companyAPI.getInfo();
+      setCompanyInfo(data);
+    } catch (error) {
+      console.error('Erro ao carregar informações da empresa:', error);
+      // Fallback para dados padrão
+      setCompanyInfo({
+        name: "3D Stuff",
+        about: "A 3D Stuff nasceu com a missão de transformar ideias em realidade através da impressão 3D. Trabalhamos com tecnologia de ponta e criatividade para oferecer peças únicas e personalizadas."
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const values = [
     {
       icon: Target,
@@ -27,16 +50,27 @@ export const About = () => {
     }
   ];
 
+  if (loading) {
+    return (
+      <section id="about" className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4 text-center">
+          <Loader2 className="mx-auto h-12 w-12 animate-spin text-orange-500" />
+          <p className="mt-4 text-gray-600">Carregando informações...</p>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="about" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Sobre a <span className="text-orange-500">3D Stuff</span>
+            Sobre a <span className="text-orange-500">{companyInfo?.name || "3D Stuff"}</span>
           </h2>
           <div className="max-w-3xl mx-auto">
             <p className="text-lg text-gray-600 leading-relaxed mb-8">
-              {companyInfo.about}
+              {companyInfo?.about || "A 3D Stuff nasceu com a missão de transformar ideias em realidade através da impressão 3D."}
             </p>
           </div>
         </div>

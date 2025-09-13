@@ -1,15 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from './ui/button';
-import { ArrowRight, Zap, Star, Users } from 'lucide-react';
-import { companyInfo } from '../mock';
+import { ArrowRight, Zap, Star, Users, Loader2 } from 'lucide-react';
+import { companyAPI } from '../services/api';
 
 export const Hero = () => {
+  const [companyInfo, setCompanyInfo] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    loadCompanyInfo();
+  }, []);
+
+  const loadCompanyInfo = async () => {
+    try {
+      const data = await companyAPI.getInfo();
+      setCompanyInfo(data);
+    } catch (error) {
+      console.error('Erro ao carregar informações da empresa:', error);
+      // Fallback para dados padrão em caso de erro
+      setCompanyInfo({
+        name: "3D Stuff",
+        slogan: "Produtos exclusivos em impressão 3D para você."
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const scrollToProducts = () => {
     const element = document.getElementById('products');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  if (loading) {
+    return (
+      <section id="home" className="pt-20 pb-16 bg-gradient-to-br from-gray-50 to-white min-h-screen flex items-center">
+        <div className="container mx-auto px-4 text-center">
+          <Loader2 className="mx-auto h-12 w-12 animate-spin text-orange-500" />
+          <p className="mt-4 text-gray-600">Carregando...</p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="home" className="pt-20 pb-16 bg-gradient-to-br from-gray-50 to-white min-h-screen flex items-center">
@@ -21,7 +55,7 @@ export const Hero = () => {
               <span className="text-orange-500">3D</span> Stuff
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed">
-              {companyInfo.slogan}
+              {companyInfo?.slogan || "Produtos exclusivos em impressão 3D para você."}
             </p>
           </div>
 
