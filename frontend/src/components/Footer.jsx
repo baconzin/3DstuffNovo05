@@ -29,6 +29,7 @@ export const Footer = () => {
       });
     }
   };
+
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -138,8 +139,8 @@ export const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Contato</h3>
             <div className="space-y-2 text-gray-300">
               <p>📧 {companyInfo?.email || "contato@3dstuff.com.br"}</p>
-              <p>📱 +55 (11) 99999-9999</p>
-              <p>📍 São Paulo, SP - Brasil</p>
+              <p>📱 (19) 97163-6969</p>
+              <p>📍 Campinas, SP - Brasil</p>
             </div>
           </div>
         </div>

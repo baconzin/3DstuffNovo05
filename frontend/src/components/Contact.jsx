@@ -17,7 +17,7 @@ export const Contact = () => {
   });
   const [loading, setLoading] = useState(false);
 
-  const whatsappNumber = "5511999999999"; // Número do WhatsApp
+  const whatsappNumber = "5519971636969"; // Número real do cliente
   const companyEmail = "contato@3dstuff.com.br";
 
   const handleInputChange = (e) => {
@@ -187,6 +187,9 @@ export const Contact = () => {
                 <p className="text-gray-600 mb-4">
                   Fale conosco diretamente pelo WhatsApp para atendimento rápido e personalizado.
                 </p>
+                <p className="text-gray-600 mb-4 font-medium">
+                  📱 (19) 97163-6969
+                </p>
                 <Button 
                   onClick={handleWhatsAppClick}
                   className="bg-green-500 hover:bg-green-600 text-white w-full transition-all duration-200 transform hover:scale-105"
@@ -216,7 +219,7 @@ export const Contact = () => {
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900">Telefone</h3>
-                      <p className="text-gray-600">+55 (11) 99999-9999</p>
+                      <p className="text-gray-600">(19) 97163-6969</p>
                     </div>
                   </div>
 
@@ -226,7 +229,7 @@ export const Contact = () => {
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900">Localização</h3>
-                      <p className="text-gray-600">São Paulo, SP - Brasil</p>
+                      <p className="text-gray-600">Campinas, SP - Brasil</p>
                     </div>
                   </div>
                 </div>

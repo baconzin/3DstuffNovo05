@@ -5,7 +5,7 @@ export const WhatsAppFloat = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
 
-  const whatsappNumber = "5511999999999"; // Número do WhatsApp
+  const whatsappNumber = "5519971636969"; // Número real do cliente
 
   useEffect(() => {
     // Mostrar o botão após 2 segundos para dar tempo da página carregar
@@ -91,7 +91,7 @@ export const WhatsAppFloat = () => {
 
 // Componente alternativo mais simples (se preferir)
 export const WhatsAppSimple = () => {
-  const whatsappNumber = "5511999999999";
+  const whatsappNumber = "5519971636969";
 
   const handleClick = () => {
     const message = "Olá! Vim do site da 3D Stuff e quero saber mais sobre os produtos! 🎯";
@@ -114,7 +114,7 @@ export const WhatsAppSimple = () => {
 
 // Componente com ícone personalizado do WhatsApp (mais realista)
 export const WhatsAppCustomIcon = () => {
-  const whatsappNumber = "5511999999999";
+  const whatsappNumber = "5519971636969";
 
   const handleClick = () => {
     const message = "Olá! 👋 Estou interessado nos produtos da 3D Stuff. Podem me ajudar?";

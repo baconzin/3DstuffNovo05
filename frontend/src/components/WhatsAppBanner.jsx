@@ -5,7 +5,7 @@ export const WhatsAppBanner = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
 
-  const whatsappNumber = "5511999999999";
+  const whatsappNumber = "5519971636969"; // Número real do cliente
 
   useEffect(() => {
     // Mostrar banner após 5 segundos
@@ -92,7 +92,7 @@ export const WhatsAppBanner = () => {
 // Versão mobile simplificada
 export const WhatsAppBannerMobile = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const whatsappNumber = "5511999999999";
+  const whatsappNumber = "5519971636969"; // Número real do cliente
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 3000);
