@@ -6,6 +6,8 @@ import logging
 from pathlib import Path
 from routes import router
 from payment_routes import router as payment_router
+from contact_routes import router as contact_router
+from admin_routes import router as admin_router
 from database import close_db_connection
 
 ROOT_DIR = Path(__file__).parent
@@ -14,13 +16,15 @@ load_dotenv(ROOT_DIR / '.env')
 # Create the main app
 app = FastAPI(
     title="3D Stuff API",
-    description="API para o site de produtos de impressão 3D com pagamentos Mercado Pago",
-    version="1.0.0"
+    description="API completa para o e-commerce de produtos de impressão 3D com Mercado Pago, gestão de estoque e emails automáticos",
+    version="2.0.0"
 )
 
-# Include routes
+# Include all routes
 app.include_router(router)
 app.include_router(payment_router)
+app.include_router(contact_router)
+app.include_router(admin_router)
 
 app.add_middleware(
     CORSMiddleware,
