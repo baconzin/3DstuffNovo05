@@ -7,7 +7,6 @@ import { Separator } from './ui/separator';
 import { X, CreditCard, Smartphone, FileText, Loader2 } from 'lucide-react';
 import { initMercadoPago, CardPayment } from '@mercadopago/sdk-react';
 import axios from 'axios';
-import QRCode from 'qrcode.react';
 import { useToast } from '../hooks/use-toast';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
