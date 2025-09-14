@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { MessageCircle, X } from 'lucide-react';
+import { MessageCircle } from 'lucide-react';
 
 export const WhatsAppFloat = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -41,51 +41,34 @@ export const WhatsAppFloat = () => {
   if (!isVisible) return null;
 
   return (
-    <>
-      {/* Botão Principal do WhatsApp */}
-      <div
-        className={`fixed bottom-6 right-6 z-50 transition-all duration-300 transform ${
-          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-        }`}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
+    <div
+      className={`fixed bottom-4 right-4 z-50 transition-all duration-300 transform ${
+        isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+      }`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      {/* Tooltip menor e mais discreto */}
+      {showTooltip && (
+        <div className="absolute bottom-14 right-0 bg-gray-800 text-white text-xs px-2 py-1 rounded shadow-lg whitespace-nowrap animate-fade-in">
+          WhatsApp
+          <div className="absolute top-full right-2 w-0 h-0 border-l-2 border-r-2 border-t-2 border-transparent border-t-gray-800"></div>
+        </div>
+      )}
+
+      {/* Botão WhatsApp - Menor e mais discreto */}
+      <button
+        onClick={handleWhatsAppClick}
+        className="bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-md hover:shadow-lg transition-all duration-200 transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-green-300"
+        title="Falar no WhatsApp"
       >
-        {/* Tooltip */}
-        {showTooltip && (
-          <div className="absolute bottom-16 right-0 mb-2 bg-gray-900 text-white px-4 py-2 rounded-lg shadow-lg text-sm whitespace-nowrap animate-fade-in">
-            💬 Fale conosco no WhatsApp
-            <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-900"></div>
-          </div>
-        )}
-
-        {/* Botão WhatsApp */}
-        <button
-          onClick={handleWhatsAppClick}
-          className="group relative bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-green-300"
-        >
-          {/* Animação de pulso */}
-          <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-20"></div>
-          
-          {/* Ícone do WhatsApp */}
-          <MessageCircle className="h-6 w-6 relative z-10" />
-          
-          {/* Badge de notificação (opcional) */}
-          <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold animate-bounce">
-            1
-          </div>
-        </button>
-      </div>
-
-      {/* Versão Mobile - Menor e mais discreta */}
-      <style jsx>{`
-        @media (max-width: 768px) {
-          .whatsapp-mobile {
-            width: 56px !important;
-            height: 56px !important;
-          }
-        }
-      `}</style>
-    </>
+        {/* Ícone menor */}
+        <MessageCircle className="h-5 w-5" />
+        
+        {/* Indicador online pequeno */}
+        <div className="absolute -top-0.5 -right-0.5 bg-green-400 rounded-full h-3 w-3 border border-white animate-pulse"></div>
+      </button>
+    </div>
   );
 };
 
