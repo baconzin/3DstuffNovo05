@@ -67,12 +67,12 @@ body, #root, .App {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #f97316;
+  background: #3b82f6;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ea580c;
+  background: #2563eb;
 }
 
 /* Button hover effects */
