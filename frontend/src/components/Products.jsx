@@ -70,7 +70,7 @@ export const Products = () => {
       <section id="products" className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center">
-            <Loader2 className="mx-auto h-12 w-12 animate-spin text-orange-500" />
+            <Loader2 className="mx-auto h-12 w-12 animate-spin text-blue-500" />
             <p className="mt-4 text-gray-600">Carregando produtos...</p>
           </div>
         </div>
@@ -83,7 +83,7 @@ export const Products = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Nossos <span className="text-orange-500">Produtos</span>
+            Nossos <span className="text-blue-500">Produtos</span>
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Descubra nossa coleção exclusiva de produtos em impressão 3D, 
@@ -104,8 +104,8 @@ export const Products = () => {
               onClick={() => setSelectedCategory(category)}
               className={`transition-all duration-200 ${
                 selectedCategory === category 
-                  ? 'bg-orange-500 hover:bg-orange-600 text-white' 
-                  : 'hover:border-orange-500 hover:text-orange-500'
+                  ? 'bg-blue-500 hover:bg-blue-600 text-white' 
+                  : 'hover:border-blue-500 hover:text-blue-500'
               }`}
             >
               {category}
@@ -136,14 +136,14 @@ export const Products = () => {
               </CardHeader>
 
               <CardContent className="p-6">
-                <CardTitle className="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-500 transition-colors">
+                <CardTitle className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-500 transition-colors">
                   {product.name}
                 </CardTitle>
                 <p className="text-gray-600 mb-4 leading-relaxed">
                   {product.description}
                 </p>
                 <div className="flex items-center justify-between">
-                  <span className="text-2xl font-bold text-orange-500">
+                  <span className="text-2xl font-bold text-blue-500">
                     {product.price}
                   </span>
                 </div>
@@ -152,7 +152,7 @@ export const Products = () => {
               <CardFooter className="p-6 pt-0 flex gap-3">
                 <Button 
                   onClick={() => handleBuyClick(product)}
-                  className="flex-1 bg-orange-500 hover:bg-orange-600 text-white transition-all duration-200 transform hover:scale-105"
+                  className="flex-1 bg-blue-500 hover:bg-blue-600 text-white transition-all duration-200 transform hover:scale-105"
                 >
                   <ShoppingCart className="mr-2 h-4 w-4" />
                   Comprar
@@ -160,7 +160,7 @@ export const Products = () => {
                 <Button 
                   variant="outline" 
                   onClick={() => handleViewMore(product)}
-                  className="hover:border-orange-500 hover:text-orange-500 transition-all duration-200"
+                  className="hover:border-blue-500 hover:text-blue-500 transition-all duration-200"
                 >
                   <Eye className="h-4 w-4" />
                 </Button>

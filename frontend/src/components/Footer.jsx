@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import { Separator } from './ui/separator';
-import { Instagram, Facebook, Music } from 'lucide-react';
+import { ShoppingBag, Instagram, Facebook, Music } from 'lucide-react';
 import { companyAPI } from '../services/api';
-import { Logo3DStuffFooter } from './Logo';
 
 export const Footer = () => {
   const [companyInfo, setCompanyInfo] = useState(null);
@@ -57,7 +56,10 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="space-y-4">
-            <Logo3DStuffFooter />
+            <div className="flex items-center space-x-2">
+              <ShoppingBag className="h-8 w-8 text-blue-500" />
+              <span className="text-2xl font-bold">3D Stuff</span>
+            </div>
             <p className="text-gray-300 leading-relaxed">
               Transformamos ideias em realidade através da impressão 3D. 
               Produtos únicos e personalizados para você.
@@ -67,7 +69,7 @@ export const Footer = () => {
                 variant="ghost"
                 size="sm"
                 onClick={() => handleSocialClick('instagram')}
-                className="p-2 hover:bg-gray-800 hover:text-orange-500 transition-colors"
+                className="p-2 hover:bg-gray-800 hover:text-blue-500 transition-colors"
               >
                 <Instagram className="h-5 w-5" />
               </Button>
@@ -75,7 +77,7 @@ export const Footer = () => {
                 variant="ghost"
                 size="sm"
                 onClick={() => handleSocialClick('facebook')}
-                className="p-2 hover:bg-gray-800 hover:text-orange-500 transition-colors"
+                className="p-2 hover:bg-gray-800 hover:text-blue-500 transition-colors"
               >
                 <Facebook className="h-5 w-5" />
               </Button>
@@ -83,7 +85,7 @@ export const Footer = () => {
                 variant="ghost"
                 size="sm"
                 onClick={() => handleSocialClick('tiktok')}
-                className="p-2 hover:bg-gray-800 hover:text-orange-500 transition-colors"
+                className="p-2 hover:bg-gray-800 hover:text-blue-500 transition-colors"
               >
                 <Music className="h-5 w-5" />
               </Button>
@@ -96,25 +98,25 @@ export const Footer = () => {
             <div className="space-y-2">
               <button 
                 onClick={() => scrollToSection('home')}
-                className="block text-gray-300 hover:text-orange-500 transition-colors"
+                className="block text-gray-300 hover:text-blue-500 transition-colors"
               >
                 Início
               </button>
               <button 
                 onClick={() => scrollToSection('products')}
-                className="block text-gray-300 hover:text-orange-500 transition-colors"
+                className="block text-gray-300 hover:text-blue-500 transition-colors"
               >
                 Produtos
               </button>
               <button 
                 onClick={() => scrollToSection('about')}
-                className="block text-gray-300 hover:text-orange-500 transition-colors"
+                className="block text-gray-300 hover:text-blue-500 transition-colors"
               >
                 Sobre
               </button>
               <button 
                 onClick={() => scrollToSection('contact')}
-                className="block text-gray-300 hover:text-orange-500 transition-colors"
+                className="block text-gray-300 hover:text-blue-500 transition-colors"
               >
                 Contato
               </button>
@@ -125,10 +127,10 @@ export const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Produtos</h3>
             <div className="space-y-2 text-gray-300">
-              <p className="hover:text-orange-500 transition-colors cursor-pointer">Miniaturas</p>
-              <p className="hover:text-orange-500 transition-colors cursor-pointer">Utilitários</p>
-              <p className="hover:text-orange-500 transition-colors cursor-pointer">Decoração</p>
-              <p className="hover:text-orange-500 transition-colors cursor-pointer">Personalizados</p>
+              <p className="hover:text-blue-500 transition-colors cursor-pointer">Miniaturas</p>
+              <p className="hover:text-blue-500 transition-colors cursor-pointer">Utilitários</p>
+              <p className="hover:text-blue-500 transition-colors cursor-pointer">Decoração</p>
+              <p className="hover:text-blue-500 transition-colors cursor-pointer">Personalizados</p>
             </div>
           </div>
 
@@ -151,10 +153,10 @@ export const Footer = () => {
             © 2025 3D Stuff. Todos os direitos reservados.
           </div>
           <div className="flex space-x-6 text-sm text-gray-400">
-            <a href="#" className="hover:text-orange-500 transition-colors">
+            <a href="#" className="hover:text-blue-500 transition-colors">
               Política de Privacidade
             </a>
-            <a href="#" className="hover:text-orange-500 transition-colors">
+            <a href="#" className="hover:text-blue-500 transition-colors">
               Termos de Uso
             </a>
           </div>

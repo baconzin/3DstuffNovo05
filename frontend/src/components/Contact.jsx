@@ -84,7 +84,7 @@ export const Contact = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Entre em <span className="text-orange-500">Contato</span>
+            Entre em <span className="text-blue-500">Contato</span>
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Tem alguma dúvida ou quer fazer um pedido personalizado? 
@@ -104,7 +104,7 @@ export const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
                   <Label htmlFor="name" className="text-gray-700 font-medium">
-                    Nome <span className="text-orange-500">*</span>
+                    Nome <span className="text-blue-500">*</span>
                   </Label>
                   <Input
                     id="name"
@@ -114,14 +114,14 @@ export const Contact = () => {
                     onChange={handleInputChange}
                     required
                     disabled={loading}
-                    className="focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    className="focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Seu nome"
                   />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="email" className="text-gray-700 font-medium">
-                    E-mail <span className="text-orange-500">*</span>
+                    E-mail <span className="text-blue-500">*</span>
                   </Label>
                   <Input
                     id="email"
@@ -131,14 +131,14 @@ export const Contact = () => {
                     onChange={handleInputChange}
                     required
                     disabled={loading}
-                    className="focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    className="focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="seu@email.com"
                   />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="message" className="text-gray-700 font-medium">
-                    Mensagem <span className="text-orange-500">*</span>
+                    Mensagem <span className="text-blue-500">*</span>
                   </Label>
                   <Textarea
                     id="message"
@@ -148,7 +148,7 @@ export const Contact = () => {
                     required
                     disabled={loading}
                     rows={4}
-                    className="resize-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    className="resize-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Digite sua mensagem..."
                   />
                 </div>
@@ -156,7 +156,7 @@ export const Contact = () => {
                 <Button 
                   type="submit" 
                   disabled={loading}
-                  className="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 transition-all duration-200 transform hover:scale-105"
+                  className="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 transition-all duration-200 transform hover:scale-105"
                 >
                   {loading ? (
                     <>
@@ -179,8 +179,8 @@ export const Contact = () => {
             <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300">
               <CardContent className="p-8">
                 <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mr-4">
-                    <MessageCircle className="h-6 w-6 text-orange-500" />
+                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                    <MessageCircle className="h-6 w-6 text-blue-500" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900">WhatsApp</h3>
                 </div>
@@ -204,8 +204,8 @@ export const Contact = () => {
               <CardContent className="p-8">
                 <div className="space-y-6">
                   <div className="flex items-center">
-                    <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mr-4">
-                      <Mail className="h-6 w-6 text-orange-500" />
+                    <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                      <Mail className="h-6 w-6 text-blue-500" />
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900">E-mail</h3>
@@ -214,8 +214,8 @@ export const Contact = () => {
                   </div>
 
                   <div className="flex items-center">
-                    <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mr-4">
-                      <Phone className="h-6 w-6 text-orange-500" />
+                    <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                      <Phone className="h-6 w-6 text-blue-500" />
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900">Telefone</h3>
@@ -224,8 +224,8 @@ export const Contact = () => {
                   </div>
 
                   <div className="flex items-center">
-                    <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mr-4">
-                      <MapPin className="h-6 w-6 text-orange-500" />
+                    <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                      <MapPin className="h-6 w-6 text-blue-500" />
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900">Localização</h3>
