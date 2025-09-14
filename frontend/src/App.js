@@ -8,7 +8,6 @@ import { About } from "./components/About";
 import { Contact } from "./components/Contact";
 import { Footer } from "./components/Footer";
 import { WhatsAppFloat } from "./components/WhatsAppFloat";
-import { WhatsAppBanner } from "./components/WhatsAppBanner";
 import { Toaster } from "./components/ui/sonner";
 
 const Home = () => {
@@ -23,9 +22,8 @@ const Home = () => {
       </main>
       <Footer />
       
-      {/* WhatsApp Components */}
+      {/* Apenas o ícone flutuante pequeno */}
       <WhatsAppFloat />
-      <WhatsAppBanner />
       
       <Toaster />
     </>
