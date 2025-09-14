@@ -414,8 +414,9 @@ export const PaymentModal = ({ product, isOpen, onClose, onSuccess }) => {
                         </div>
                       ) : (
                         <div className="text-center">
-                          <div className="mb-4">
-                            <QRCode value={qrCode} size={200} />
+                          <div className="mb-4 bg-gray-100 p-8 rounded-lg">
+                            <p className="text-lg font-semibold mb-2">PIX QR Code</p>
+                            <p className="text-sm text-gray-600">Use seu app do banco para escanear</p>
                           </div>
                           <p className="text-sm text-gray-600 mb-4">
                             Escaneie o QR Code com seu banco ou copie o código
