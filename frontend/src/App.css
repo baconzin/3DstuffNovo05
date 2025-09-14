@@ -117,7 +117,7 @@ textarea:focus-visible {
 
 /* Text selection */
 ::selection {
-  background: #f97316;
+  background: #3b82f6;
   color: white;
 }
 
