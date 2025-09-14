@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import { Separator } from './ui/separator';
-import { ShoppingBag, Instagram, Facebook, Music } from 'lucide-react';
+import { Instagram, Facebook, Music } from 'lucide-react';
 import { companyAPI } from '../services/api';
+import { Logo3DStuffFooter } from './Logo';
 
 export const Footer = () => {
   const [companyInfo, setCompanyInfo] = useState(null);
@@ -56,10 +57,7 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <ShoppingBag className="h-8 w-8 text-orange-500" />
-              <span className="text-2xl font-bold">3D Stuff</span>
-            </div>
+            <Logo3DStuffFooter />
             <p className="text-gray-300 leading-relaxed">
               Transformamos ideias em realidade através da impressão 3D. 
               Produtos únicos e personalizados para você.

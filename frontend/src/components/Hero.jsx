@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import { ArrowRight, Zap, Star, Users, Loader2 } from 'lucide-react';
 import { companyAPI } from '../services/api';
+import { Logo3DStuff } from './Logo';
 
 export const Hero = () => {
   const [companyInfo, setCompanyInfo] = useState(null);
@@ -17,7 +18,7 @@ export const Hero = () => {
       setCompanyInfo(data);
     } catch (error) {
       console.error('Erro ao carregar informações da empresa:', error);
-      // Fallback para dados padrão em caso de erro
+      // Fallback para dados padrão
       setCompanyInfo({
         name: "3D Stuff",
         slogan: "Produtos exclusivos em impressão 3D para você."
@@ -49,10 +50,13 @@ export const Hero = () => {
     <section id="home" className="pt-20 pb-16 bg-gradient-to-br from-gray-50 to-white min-h-screen flex items-center">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-4xl mx-auto">
-          {/* Main Title */}
+          {/* Logo animado grande */}
           <div className="mb-8 animate-fade-in">
+            <div className="flex justify-center mb-6">
+              <Logo3DStuff variant="orange" className="h-24 w-24 animate-bounce-gentle" />
+            </div>
             <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-              <span className="text-orange-500">3D</span> Stuff
+              <span className="text-orange-500">3D</span> STUFF
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed">
               {companyInfo?.slogan || "Produtos exclusivos em impressão 3D para você."}

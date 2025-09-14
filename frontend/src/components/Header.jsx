@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from './ui/button';
-import { Menu, X, ShoppingBag } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import { Logo3DStuffComplete } from './Logo';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,10 +19,7 @@ export const Header = () => {
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <ShoppingBag className="h-8 w-8 text-orange-500" />
-            <span className="text-2xl font-bold text-gray-900">3D Stuff</span>
-          </div>
+          <Logo3DStuffComplete variant="orange" />
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
