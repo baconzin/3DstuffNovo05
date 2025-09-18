@@ -300,6 +300,167 @@ def test_malformed_request():
         log_test("Malformed JSON test", False, f"Exception: {str(e)}")
         return False
 
+def test_new_product_management():
+    """Test the newly added products from product management scripts"""
+    print("🆕 Testing New Product Management Functionality...")
+    
+    # Expected new products based on review request
+    expected_products = [
+        {"id": "5eaa1890", "name": "Test Product", "category": "Utilitários"},
+        {"id": "2a0db0a3", "name": "Miniatura Dragon Ball - Goku", "category": "Miniaturas"},
+        {"id": "5ad8a7dc", "name": "Suporte Celular Ajustável", "category": "Utilitários"},
+        {"id": "ef72ae6b", "name": "Vaso Decorativo Geométrico", "category": "Decoração"}
+    ]
+    
+    # Test 1: Check if new products exist in database
+    try:
+        response = requests.get(f"{API_BASE}/products", timeout=10)
+        if response.status_code == 200:
+            all_products = response.json()
+            found_products = []
+            
+            for expected in expected_products:
+                found = next((p for p in all_products if p.get('id') == expected['id']), None)
+                if found:
+                    found_products.append(found)
+                    log_test(f"New Product Found - {expected['name']}", True, 
+                           f"ID: {found['id']}, Category: {found['category']}")
+                else:
+                    log_test(f"New Product Missing - {expected['name']}", False, 
+                           f"Product with ID {expected['id']} not found in database")
+            
+            log_test("Product Addition Scripts Integration", len(found_products) > 0, 
+                   f"Found {len(found_products)}/{len(expected_products)} expected products")
+        else:
+            log_test("Product Addition Scripts Integration", False, 
+                   f"Failed to retrieve products: {response.status_code}")
+    except Exception as e:
+        log_test("Product Addition Scripts Integration", False, f"Exception: {str(e)}")
+
+def test_category_filtering_new_products():
+    """Test category filtering with new products"""
+    print("🏷️ Testing Category Filtering for New Products...")
+    
+    # Test Utilitários category (should have 3 products now)
+    try:
+        response = requests.get(f"{API_BASE}/products?category=Utilitários", timeout=10)
+        if response.status_code == 200:
+            utilitarian_products = response.json()
+            utilitarian_count = len(utilitarian_products)
+            
+            # Check if we have the expected new products
+            expected_utilitarian_ids = ["5eaa1890", "5ad8a7dc"]  # Test Product + Suporte Celular
+            found_new_utilitarian = [p for p in utilitarian_products if p.get('id') in expected_utilitarian_ids]
+            
+            log_test("Utilitários Category Filter", utilitarian_count >= 2, 
+                   f"Found {utilitarian_count} utility products, {len(found_new_utilitarian)} new ones")
+        else:
+            log_test("Utilitários Category Filter", False, f"Status code: {response.status_code}")
+    except Exception as e:
+        log_test("Utilitários Category Filter", False, f"Exception: {str(e)}")
+    
+    # Test Miniaturas category (should have the new Goku miniature)
+    try:
+        response = requests.get(f"{API_BASE}/products?category=Miniaturas", timeout=10)
+        if response.status_code == 200:
+            miniature_products = response.json()
+            goku_product = next((p for p in miniature_products if p.get('id') == '2a0db0a3'), None)
+            
+            log_test("Miniaturas Category Filter", goku_product is not None, 
+                   f"Found Goku miniature: {goku_product['name'] if goku_product else 'Not found'}")
+        else:
+            log_test("Miniaturas Category Filter", False, f"Status code: {response.status_code}")
+    except Exception as e:
+        log_test("Miniaturas Category Filter", False, f"Exception: {str(e)}")
+    
+    # Test Decoração category (should have the new vase)
+    try:
+        response = requests.get(f"{API_BASE}/products?category=Decoração", timeout=10)
+        if response.status_code == 200:
+            decoration_products = response.json()
+            vase_product = next((p for p in decoration_products if p.get('id') == 'ef72ae6b'), None)
+            
+            log_test("Decoração Category Filter", vase_product is not None, 
+                   f"Found decorative vase: {vase_product['name'] if vase_product else 'Not found'}")
+        else:
+            log_test("Decoração Category Filter", False, f"Status code: {response.status_code}")
+    except Exception as e:
+        log_test("Decoração Category Filter", False, f"Exception: {str(e)}")
+
+def test_individual_new_products():
+    """Test individual product retrieval for new products"""
+    print("🔍 Testing Individual New Product Retrieval...")
+    
+    new_product_ids = ["5eaa1890", "2a0db0a3", "5ad8a7dc", "ef72ae6b"]
+    
+    for product_id in new_product_ids:
+        try:
+            response = requests.get(f"{API_BASE}/products/{product_id}", timeout=10)
+            if response.status_code == 200:
+                product = response.json()
+                # Validate data structure
+                required_fields = ['id', 'name', 'description', 'price', 'category', 'image']
+                missing_fields = [field for field in required_fields if field not in product]
+                
+                if not missing_fields:
+                    log_test(f"Individual Product Retrieval - {product_id}", True, 
+                           f"Product: {product['name']}, Price: {product['price']}")
+                else:
+                    log_test(f"Individual Product Retrieval - {product_id}", False, 
+                           f"Missing fields: {missing_fields}")
+            elif response.status_code == 404:
+                log_test(f"Individual Product Retrieval - {product_id}", False, 
+                       "Product not found in database")
+            else:
+                log_test(f"Individual Product Retrieval - {product_id}", False, 
+                       f"Status code: {response.status_code}")
+        except Exception as e:
+            log_test(f"Individual Product Retrieval - {product_id}", False, f"Exception: {str(e)}")
+
+def test_data_structure_validation():
+    """Test data structure validation for new products"""
+    print("📊 Testing Data Structure Validation...")
+    
+    try:
+        response = requests.get(f"{API_BASE}/products", timeout=10)
+        if response.status_code == 200:
+            products = response.json()
+            
+            # Test price formatting
+            price_format_issues = []
+            for product in products:
+                price = product.get('price', '')
+                if not price.startswith('R$') or ',' not in price:
+                    price_format_issues.append(f"{product.get('name', 'Unknown')}: {price}")
+            
+            log_test("Price Format Validation", len(price_format_issues) == 0, 
+                   f"Issues found: {price_format_issues[:3]}" if price_format_issues else "All prices properly formatted")
+            
+            # Test ID format (should be strings)
+            id_format_issues = []
+            for product in products:
+                product_id = product.get('id')
+                if not isinstance(product_id, str) or len(product_id) < 4:
+                    id_format_issues.append(f"{product.get('name', 'Unknown')}: {product_id}")
+            
+            log_test("ID Format Validation", len(id_format_issues) == 0, 
+                   f"Issues found: {id_format_issues[:3]}" if id_format_issues else "All IDs properly formatted")
+            
+            # Test required fields presence
+            field_issues = []
+            required_fields = ['id', 'name', 'description', 'price', 'category', 'image']
+            for product in products:
+                missing = [field for field in required_fields if not product.get(field)]
+                if missing:
+                    field_issues.append(f"{product.get('name', 'Unknown')}: missing {missing}")
+            
+            log_test("Required Fields Validation", len(field_issues) == 0, 
+                   f"Issues found: {field_issues[:3]}" if field_issues else "All required fields present")
+        else:
+            log_test("Data Structure Validation", False, f"Failed to retrieve products: {response.status_code}")
+    except Exception as e:
+        log_test("Data Structure Validation", False, f"Exception: {str(e)}")
+
 def run_all_tests():
     """Run all backend API tests"""
     print("Starting comprehensive backend API testing...")
@@ -317,6 +478,13 @@ def run_all_tests():
     test_get_products_all_category()
     test_get_single_product(products)
     test_get_invalid_product()
+    
+    # Test NEW Product Management Functionality
+    print("🆕 Testing New Product Management Functionality...")
+    test_new_product_management()
+    test_category_filtering_new_products()
+    test_individual_new_products()
+    test_data_structure_validation()
     
     # Test Contact API
     print("📧 Testing Contact API...")
