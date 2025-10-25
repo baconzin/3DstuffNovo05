@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
-import { Separator } from './ui/separator';
-import { X, CreditCard, Smartphone, FileText, Loader2 } from 'lucide-react';
-import { initMercadoPago, CardPayment } from '@mercadopago/sdk-react';
-import axios from 'axios';
-import { useToast } from '../hooks/use-toast';
+import { X, MessageCircle, ShoppingCart, User } from 'lucide-react';
+import { whatsappAPI } from '../services/api';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const PUBLIC_KEY = process.env.REACT_APP_MERCADO_PAGO_PUBLIC_KEY;
