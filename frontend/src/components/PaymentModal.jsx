@@ -6,22 +6,9 @@ import { Label } from './ui/label';
 import { X, MessageCircle, ShoppingCart, User } from 'lucide-react';
 import { whatsappAPI } from '../services/api';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const PUBLIC_KEY = process.env.REACT_APP_MERCADO_PAGO_PUBLIC_KEY;
-
 export const PaymentModal = ({ product, isOpen, onClose, onSuccess }) => {
-  const { toast } = useToast();
-  const [selectedMethod, setSelectedMethod] = useState('pix');
-  const [isLoading, setIsLoading] = useState(false);
-  const [customerData, setCustomerData] = useState({
-    name: '',
-    email: '',
-    document: ''
-  });
-  const [paymentResult, setPaymentResult] = useState(null);
-  const [qrCode, setQrCode] = useState('');
-  const [installmentOptions, setInstallmentOptions] = useState([]);
-  const [selectedInstallments, setSelectedInstallments] = useState(1);
+  const [quantity, setQuantity] = useState(1);
+  const [customerName, setCustomerName] = useState('');
 
   // Inicializar Mercado Pago
   useEffect(() => {
