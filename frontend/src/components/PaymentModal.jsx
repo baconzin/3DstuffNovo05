@@ -10,239 +10,28 @@ export const PaymentModal = ({ product, isOpen, onClose, onSuccess }) => {
   const [quantity, setQuantity] = useState(1);
   const [customerName, setCustomerName] = useState('');
 
-  // Inicializar Mercado Pago
-  useEffect(() => {
-    if (PUBLIC_KEY) {
-      initMercadoPago(PUBLIC_KEY, {
-        locale: 'pt-BR',
-        advancedFraudPrevention: true
+  const handleWhatsAppPurchase = () => {
+    // Enviar dados do produto e quantidade para WhatsApp
+    whatsappAPI.buyProduct(product, quantity);
+    
+    // Fechar modal e mostrar sucesso
+    onClose();
+    
+    // Callback de sucesso (se necessário)
+    if (onSuccess) {
+      onSuccess({
+        product: product,
+        quantity: quantity,
+        method: 'whatsapp',
+        customer_name: customerName
       });
-    }
-  }, []);
-
-  // Carregar opções de parcelamento quando modal abrir
-  useEffect(() => {
-    if (isOpen && product) {
-      loadInstallmentOptions();
-    }
-  }, [isOpen, product]);
-
-  const loadInstallmentOptions = async () => {
-    try {
-      const response = await axios.get(`${BACKEND_URL}/api/payments/installments/${product.id}`);
-      if (response.data.success) {
-        setInstallmentOptions(response.data.installment_options);
-      }
-    } catch (error) {
-      console.error('Erro ao carregar parcelamento:', error);
     }
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setCustomerData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const validateCustomerData = () => {
-    if (!customerData.name || !customerData.email || !customerData.document) {
-      toast({
-        title: "Erro",
-        description: "Preencha todos os campos obrigatórios",
-        variant: "destructive"
-      });
-      return false;
-    }
-
-    // Validação básica de email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(customerData.email)) {
-      toast({
-        title: "Erro",
-        description: "Email inválido",
-        variant: "destructive"
-      });
-      return false;
-    }
-
-    // Validação básica de CPF (apenas números e tamanho)
-    const document = customerData.document.replace(/\D/g, '');
-    if (document.length !== 11 && document.length !== 14) {
-      toast({
-        title: "Erro",
-        description: "CPF deve ter 11 dígitos ou CNPJ 14 dígitos",
-        variant: "destructive"
-      });
-      return false;
-    }
-
-    return true;
-  };
-
-  const handlePixPayment = async () => {
-    if (!validateCustomerData()) return;
-
-    setIsLoading(true);
-    try {
-      const paymentData = {
-        product_id: product.id,
-        quantity: 1,
-        customer_email: customerData.email,
-        customer_document: customerData.document.replace(/\D/g, ''),
-        customer_name: customerData.name,
-        payment_method: 'pix'
-      };
-
-      const response = await axios.post(`${BACKEND_URL}/api/payments/create`, paymentData);
-
-      if (response.data.success) {
-        setPaymentResult(response.data);
-        setQrCode(response.data.qr_code);
-        
-        // Iniciar polling para verificar status
-        startPaymentPolling(response.data.payment_id);
-        
-        toast({
-          title: "PIX gerado!",
-          description: "Escaneie o QR Code para pagar",
-        });
-      }
-    } catch (error) {
-      console.error('Erro PIX:', error);
-      toast({
-        title: "Erro",
-        description: error.response?.data?.detail || "Erro ao gerar PIX",
-        variant: "destructive"
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleCardPayment = async (formData) => {
-    if (!validateCustomerData()) return;
-
-    setIsLoading(true);
-    try {
-      const paymentData = {
-        product_id: product.id,
-        quantity: 1,
-        customer_email: customerData.email,
-        customer_document: customerData.document.replace(/\D/g, ''),
-        customer_name: customerData.name,
-        payment_method: 'credit_card',
-        installments: selectedInstallments,
-        card_token: formData.token,
-        payment_method_id: formData.payment_method_id,
-        issuer_id: formData.issuer_id
-      };
-
-      const response = await axios.post(`${BACKEND_URL}/api/payments/create`, paymentData);
-
-      if (response.data.success) {
-        setPaymentResult(response.data);
-        
-        if (response.data.status === 'approved') {
-          toast({
-            title: "Pagamento aprovado!",
-            description: "Seu pagamento foi processado com sucesso",
-          });
-          onSuccess(response.data);
-          onClose();
-        } else if (response.data.status === 'pending') {
-          toast({
-            title: "Pagamento pendente",
-            description: "Aguardando confirmação do pagamento",
-          });
-        } else {
-          toast({
-            title: "Pagamento rejeitado",
-            description: "Verifique os dados do cartão e tente novamente",
-            variant: "destructive"
-          });
-        }
-      }
-    } catch (error) {
-      console.error('Erro cartão:', error);
-      toast({
-        title: "Erro",
-        description: error.response?.data?.detail || "Erro no pagamento",
-        variant: "destructive"
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleBoletoPayment = async () => {
-    if (!validateCustomerData()) return;
-
-    setIsLoading(true);
-    try {
-      const paymentData = {
-        product_id: product.id,
-        quantity: 1,
-        customer_email: customerData.email,
-        customer_document: customerData.document.replace(/\D/g, ''),
-        customer_name: customerData.name,
-        payment_method: 'boleto'
-      };
-
-      const response = await axios.post(`${BACKEND_URL}/api/payments/create`, paymentData);
-
-      if (response.data.success) {
-        setPaymentResult(response.data);
-        
-        toast({
-          title: "Boleto gerado!",
-          description: "Clique no link para visualizar o boleto",
-        });
-      }
-    } catch (error) {
-      console.error('Erro boleto:', error);
-      toast({
-        title: "Erro",
-        description: error.response?.data?.detail || "Erro ao gerar boleto",
-        variant: "destructive"
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const startPaymentPolling = (paymentId) => {
-    const pollInterval = setInterval(async () => {
-      try {
-        const response = await axios.get(`${BACKEND_URL}/api/payments/${paymentId}/status`);
-        
-        if (response.data.status === 'approved') {
-          clearInterval(pollInterval);
-          toast({
-            title: "Pagamento aprovado!",
-            description: "PIX confirmado com sucesso!",
-          });
-          onSuccess(response.data);
-          onClose();
-        }
-      } catch (error) {
-        console.error('Erro no polling:', error);
-      }
-    }, 3000);
-
-    // Parar polling após 10 minutos
-    setTimeout(() => {
-      clearInterval(pollInterval);
-    }, 600000);
-  };
-
-  const copyPixCode = () => {
-    navigator.clipboard.writeText(qrCode);
-    toast({
-      title: "Copiado!",
-      description: "Código PIX copiado para a área de transferência",
-    });
+  const getTotalPrice = () => {
+    const price = parseFloat(product.price.replace('R$ ', '').replace(',', '.'));
+    const total = price * quantity;
+    return `R$ ${total.toFixed(2).replace('.', ',')}`;
   };
 
   if (!isOpen) return null;
