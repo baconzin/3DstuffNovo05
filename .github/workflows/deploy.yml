@@ -32,7 +32,6 @@ jobs:
         run: yarn install --non-interactive
 
       - name: Build site
-        # seu build usa craco, e seu package.json já deve ter "build": "craco build"
         run: yarn build
 
       - name: Upload artifact
