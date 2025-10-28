@@ -1,0 +1,123 @@
+[
+  {
+    "id": "1",
+    "name": "Miniatura de Personagem",
+    "description": "Miniaturas detalhadas de personagens famosos, impressas em alta qualidade.",
+    "price": "R$ 45,00",
+    "image": "https://via.placeholder.com/300x300/f97316/ffffff?text=Miniatura",
+    "category": "Miniaturas",
+    "active": true,
+    "created_at": "2025-09-13 04:03:16.039000",
+    "updated_at": "2025-09-13 04:03:16.039000"
+  },
+  {
+    "id": "2",
+    "name": "Suporte para Celular",
+    "description": "Suporte ergonômico e resistente para seu smartphone.",
+    "price": "R$ 25,00",
+    "image": "https://via.placeholder.com/300x300/f97316/ffffff?text=Suporte",
+    "category": "Utilitários",
+    "active": true,
+    "created_at": "2025-09-13 04:03:16.039000",
+    "updated_at": "2025-09-13 04:03:16.039000"
+  },
+  {
+    "id": "3",
+    "name": "Chaveiros Personalizados",
+    "description": "Chaveiros únicos com seu design ou nome personalizado.",
+    "price": "R$ 15,00",
+    "image": "https://via.placeholder.com/300x300/f97316/ffffff?text=Chaveiro",
+    "category": "Personalizados",
+    "active": true,
+    "created_at": "2025-09-13 04:03:16.039000",
+    "updated_at": "2025-09-13 04:03:16.039000"
+  },
+  {
+    "id": "4",
+    "name": "Peças Decorativas",
+    "description": "Objetos decorativos modernos para sua casa ou escritório.",
+    "price": "R$ 35,00",
+    "image": "https://via.placeholder.com/300x300/f97316/ffffff?text=Decorativo",
+    "category": "Decoração",
+    "active": true,
+    "created_at": "2025-09-13 04:03:16.039000",
+    "updated_at": "2025-09-13 04:03:16.039000"
+  },
+  {
+    "id": "5",
+    "name": "Porta-Canetas Geométrico",
+    "description": "Organizador de mesa com design geométrico único.",
+    "price": "R$ 30,00",
+    "image": "https://via.placeholder.com/300x300/f97316/ffffff?text=Porta-Canetas",
+    "category": "Utilitários",
+    "active": true,
+    "created_at": "2025-09-13 04:03:16.039000",
+    "updated_at": "2025-09-13 04:03:16.039000"
+  },
+  {
+    "id": "6",
+    "name": "Luminária Personalizada",
+    "description": "Luminária LED com design exclusivo para ambientes modernos.",
+    "price": "R$ 80,00",
+    "image": "https://via.placeholder.com/300x300/f97316/ffffff?text=Luminária",
+    "category": "Decoração",
+    "active": true,
+    "created_at": "2025-09-13 04:03:16.039000",
+    "updated_at": "2025-09-13 04:03:16.039000"
+  },
+  {
+    "id": "e5cc688c",
+    "name": "Chaveiro Personalizado Pokemon",
+    "description": "Chaveiro do seu Pokémon favorito em 3D, disponível em várias cores",
+    "price": "R$ 12,50",
+    "image": "https://via.placeholder.com/300x300/3b82f6/ffffff?text=Chaveiro+P",
+    "category": "Personalizados",
+    "created_at": "2025-09-18 02:09:48.626000",
+    "updated_at": "2025-09-18 02:09:48.626000",
+    "active": true
+  },
+  {
+    "id": "5eaa1890",
+    "name": "Teste Produto",
+    "description": "Produto de teste para validar script",
+    "price": "R$ 15,90",
+    "image": "https://via.placeholder.com/300x300/3b82f6/ffffff?text=Teste+Prod",
+    "category": "Utilitários",
+    "created_at": "2025-09-18 02:24:56.478000",
+    "updated_at": "2025-09-18 02:24:56.478000",
+    "active": true
+  },
+  {
+    "id": "2a0db0a3",
+    "name": "Miniatura Dragon Ball - Goku",
+    "description": "Miniatura detalhada do Goku em posição de luta, impressa em PLA de alta qualidade.",
+    "price": "R$ 45,00",
+    "image": "https://via.placeholder.com/300x300/3b82f6/ffffff?text=Goku+3D",
+    "category": "Miniaturas",
+    "created_at": "2025-09-18 02:25:02.624000",
+    "updated_at": "2025-09-18 02:25:02.624000",
+    "active": true
+  },
+  {
+    "id": "5ad8a7dc",
+    "name": "Suporte Celular Ajustável",
+    "description": "Suporte ergonômico para celular com ângulo ajustável, ideal para mesa de trabalho.",
+    "price": "R$ 22,00",
+    "image": "https://via.placeholder.com/300x300/3b82f6/ffffff?text=Suporte",
+    "category": "Utilitários",
+    "created_at": "2025-09-18 02:25:02.631000",
+    "updated_at": "2025-09-18 02:25:02.631000",
+    "active": true
+  },
+  {
+    "id": "ef72ae6b",
+    "name": "Vaso Decorativo Geométrico",
+    "description": "Vaso moderno com design geométrico, perfeito para plantas pequenas.",
+    "price": "R$ 35,00",
+    "image": "https://via.placeholder.com/300x300/3b82f6/ffffff?text=Vaso",
+    "category": "Decoração",
+    "created_at": "2025-09-18 02:25:02.633000",
+    "updated_at": "2025-09-18 02:25:02.633000",
+    "active": true
+  }
+]
