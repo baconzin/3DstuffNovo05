@@ -2,14 +2,14 @@
   {
     "id": "suporte-ovelha",
     "title": "Suporte Ovelha",
-    "description": "Suporte em formato de ovelha. Além de fofo, ajuda a manter pequenos objetos organizados na pia ou na bancada.",
+    "description": "Suporte em formato de ovelha. Além de fofo, ajuda a manter pequenos objetos organizados na pia ou bancada.",
     "price": "R$ 19,90",
-    "image": "/imgs/Suporte Ovelha.jpg",
+    "image": "/imgs/Suporte Ovelha (1).jpg",
     "images": [
-      "/imgs/Suporte Ovelha.jpg",
       "/imgs/Suporte Ovelha (1).jpg",
       "/imgs/Suporte Ovelha (2).jpg",
-      "/imgs/Suporte Ovelha (3).jpg"
+      "/imgs/Suporte Ovelha (3).jpg",
+      "/imgs/Suporte Ovelha (4).jpg",
     ],
     "category": "Utilitários",
     "active": true
@@ -17,14 +17,13 @@
   {
     "id": "suporte-cactus-preto",
     "title": "Suporte Cactus Preto",
-    "description": "Mini suporte em formato de cactus (preto). Ideal para segurar escova, caneta, pincel de maquiagem ou itens pequenos.",
+    "description": "Mini suporte em formato de cactus (preto). Ideal para segurar escova, caneta, pincel de make ou itens pequenos.",
     "price": "R$ 8,90",
-    "image": "/imgs/Suporte Cactus Preto.jpg",
+    "image": "/imgs/Suporte Cactus Preto (1).jpg",
     "images": [
-      "/imgs/Suporte Cactus Preto.jpg",
       "/imgs/Suporte Cactus Preto (1).jpg",
       "/imgs/Suporte Cactus Preto (2).jpg",
-      "/imgs/Suporte Cactus Preto (3).jpg"
+      "/imgs/Suporte Cactus Preto (3).jpg",
     ],
     "category": "Utilitários",
     "active": true
@@ -34,12 +33,11 @@
     "title": "Suporte Cactus Verde",
     "description": "Organizador cactus verde. Perfeito para banheiro, cozinha ou área de trabalho.",
     "price": "R$ 8,90",
-    "image": "/imgs/Suporte Cactus Verde.jpg",
+    "image": "/imgs/Suporte Cactus Verde (1).jpg",
     "images": [
-      "/imgs/Suporte Cactus Verde.jpg",
       "/imgs/Suporte Cactus Verde (1).jpg",
       "/imgs/Suporte Cactus Verde (2).jpg",
-      "/imgs/Suporte Cactus Verde (3).jpg"
+      "/imgs/Suporte Cactus Verde (3).jpg",
     ],
     "category": "Utilitários",
     "active": true
@@ -49,12 +47,11 @@
     "title": "Suporte Cactus Azul",
     "description": "Versão azul do suporte cactus. Compacto, resistente e decorativo.",
     "price": "R$ 8,90",
-    "image": "/imgs/Suporte Cactus Azul.jpg",
+    "image": "/imgs/Suporte Cactus Azul (1).jpg",
     "images": [
-      "/imgs/Suporte Cactus Azul.jpg",
       "/imgs/Suporte Cactus Azul (1).jpg",
       "/imgs/Suporte Cactus Azul (2).jpg",
-      "/imgs/Suporte Cactus Azul (3).jpg"
+      "/imgs/Suporte Cactus Azul (3).jpg",
     ],
     "category": "Utilitários",
     "active": true
@@ -62,14 +59,13 @@
   {
     "id": "suporte-barco-vermelho",
     "title": "Suporte Barco Vermelho",
-    "description": "Suporte/organizadorzinho em formato de barquinho vermelho. Ótimo pra deixar esponja, escova ou acessórios pequenos.",
+    "description": "Suporte/organizador em formato de barquinho vermelho. Ótimo pra deixar esponja, escova ou acessórios pequenos.",
     "price": "R$ 8,90",
-    "image": "/imgs/Suporte Barco Vermelho.jpg",
+    "image": "/imgs/Suporte Barco Vermelho (1).jpg",
     "images": [
-      "/imgs/Suporte Barco Vermelho.jpg",
       "/imgs/Suporte Barco Vermelho (1).jpg",
       "/imgs/Suporte Barco Vermelho (2).jpg",
-      "/imgs/Suporte Barco Vermelho (3).jpg"
+      "/imgs/Suporte Barco Vermelho (3).jpg",
     ],
     "category": "Utilitários",
     "active": true
@@ -79,12 +75,10 @@
     "title": "Suporte Barco Cinza",
     "description": "Versão cinza do suporte em formato de barquinho. Funciona como apoio e também como detalhe decorativo.",
     "price": "R$ 8,90",
-    "image": "/imgs/Suporte Barco Cinza.jpg",
+    "image": "/imgs/Suporte Barco Cinza (1).jpg",
     "images": [
-      "/imgs/Suporte Barco Cinza.jpg",
       "/imgs/Suporte Barco Cinza (1).jpg",
       "/imgs/Suporte Barco Cinza (2).jpg",
-      "/imgs/Suporte Barco Cinza (3).jpg"
     ],
     "category": "Utilitários",
     "active": true
@@ -94,12 +88,12 @@
     "title": "Sapo Porta Papel",
     "description": "Porta papel em formato de sapo. Solução divertida e funcional para banheiro ou bancada.",
     "price": "R$ 19,90",
-    "image": "/imgs/Sapo Porta Papel.jpg",
+    "image": "/imgs/Sapo Porta Papel (1).jpg",
     "images": [
-      "/imgs/Sapo Porta Papel.jpg",
       "/imgs/Sapo Porta Papel (1).jpg",
       "/imgs/Sapo Porta Papel (2).jpg",
-      "/imgs/Sapo Porta Papel (3).jpg"
+      "/imgs/Sapo Porta Papel (3).jpg",
+      "/imgs/Sapo Porta Papel (4).jpg",
     ],
     "category": "Utilitários",
     "active": true
@@ -107,14 +101,13 @@
   {
     "id": "suporte-escova",
     "title": "Suporte Escova",
-    "description": "Suporte para escova (dente, pia, limpeza). Mantém a escova suspensa, longe da bancada e da umidade.",
+    "description": "Suporte para escova (dente, pia, limpeza). Mantém a escova suspensa, longe da superfície molhada.",
     "price": "R$ 18,90",
-    "image": "/imgs/Suporte Escova.jpg",
+    "image": "/imgs/Suporte Escova (1).jpg",
     "images": [
-      "/imgs/Suporte Escova.jpg",
       "/imgs/Suporte Escova (1).jpg",
       "/imgs/Suporte Escova (2).jpg",
-      "/imgs/Suporte Escova (3).jpg"
+      "/imgs/Suporte Escova (3).jpg",
     ],
     "category": "Utilitários",
     "active": true
