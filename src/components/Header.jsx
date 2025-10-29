@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button } from './ui/button';
-import { Menu, X, ShoppingBag } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,10 +18,19 @@ export const Header = () => {
       <nav className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <ShoppingBag className="h-8 w-8 text-blue-500" />
-            <span className="text-2xl font-bold text-gray-900">3D Stuff</span>
-          </div>
+          <button
+            onClick={() => scrollToSection('home')}
+            className="flex items-center space-x-2 group"
+          >
+            <img
+              src="/imgs/3dstuff logo.png"
+              alt="3D Stuff"
+              className="h-8 w-8 rounded-md object-cover border border-blue-500/20 shadow-sm group-hover:scale-105 transition-transform"
+            />
+            <span className="text-2xl font-bold text-gray-900 group-hover:text-blue-500 transition-colors">
+              3D Stuff
+            </span>
+          </button>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
