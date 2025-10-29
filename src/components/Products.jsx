@@ -51,19 +51,21 @@ export const Products = () => {
   const handlePaymentSuccess = (paymentData) => {
     toast({
       title: "🎉 Pagamento realizado!",
-      description: `Compra de "${selectedProduct.name}" finalizada com sucesso!`,
+      description: `Compra de "${productName(product)}" finalizada com sucesso!`,
     });
     setIsPaymentModalOpen(false);
     setSelectedProduct(null);
   };
 
   const handleViewMore = (product) => {
-    // Mock para visualizar mais detalhes
     toast({
       title: "Detalhes do produto",
-      description: `Visualizando "${product.name}". Funcionalidade de detalhes completos será implementada em breve.`,
+      description: `Visualizando "${productName(product)}". Funcionalidade de detalhes completos será implementada em breve.`,
     });
   };
+
+  // Funçãozinha pra compatibilizar tanto product.name quanto product.title
+  const productName = (p) => p?.name || p?.title || '';
 
   if (loading) {
     return (
@@ -81,6 +83,7 @@ export const Products = () => {
   return (
     <section id="products" className="py-20 bg-white">
       <div className="container mx-auto px-4">
+        {/* Título / descrição da seção */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Nossos <span className="text-blue-500">Produtos</span>
@@ -91,7 +94,7 @@ export const Products = () => {
           </p>
         </div>
 
-        {/* Category Filter */}
+        {/* Filtro de categoria */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
           <div className="flex items-center gap-2 mb-4">
             <Filter className="h-5 w-5 text-gray-500" />
@@ -113,46 +116,61 @@ export const Products = () => {
           ))}
         </div>
 
-        {/* Products Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Lista de produtos */}
+        <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-4">
           {products.map((product) => (
             <Card 
               key={product.id} 
-              className="group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-0 shadow-md overflow-hidden"
+              className="group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-0 shadow-md overflow-hidden flex flex-col"
             >
+              {/* Imagem do produto - altura controlada */}
               <CardHeader className="p-0">
-                <div className="relative overflow-hidden">
+                <div className="relative overflow-hidden bg-gray-100">
                   <img
                     src={product.image}
-                    alt={product.name}
-                    className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
+                    alt={productName(product)}
+                    className="
+                      w-full
+                      h-40
+                      sm:h-48
+                      lg:h-56
+                      object-cover
+                      transition-transform
+                      duration-300
+                      group-hover:scale-110
+                    "
+                    loading="lazy"
                   />
-                  <div className="absolute top-4 right-4">
-                    <Badge variant="secondary" className="bg-white/90 text-gray-700">
+                  <div className="absolute top-3 right-3">
+                    <Badge variant="secondary" className="bg-white/90 text-gray-700 text-[11px] font-medium px-2 py-[2px] rounded">
                       {product.category}
                     </Badge>
                   </div>
                 </div>
               </CardHeader>
 
-              <CardContent className="p-6">
-                <CardTitle className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-500 transition-colors">
-                  {product.name}
+              {/* Conteúdo textual */}
+              <CardContent className="p-4 flex flex-col flex-1">
+                <CardTitle className="text-sm font-bold text-gray-900 mb-2 group-hover:text-blue-500 transition-colors leading-snug line-clamp-2">
+                  {productName(product)}
                 </CardTitle>
-                <p className="text-gray-600 mb-4 leading-relaxed">
+
+                <p className="text-gray-600 text-xs leading-relaxed mb-4 line-clamp-3">
                   {product.description}
                 </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-2xl font-bold text-blue-500">
+
+                <div className="mt-auto flex items-center justify-between">
+                  <span className="text-base font-bold text-blue-500">
                     {product.price}
                   </span>
                 </div>
               </CardContent>
 
-              <CardFooter className="p-6 pt-0 flex gap-3">
+              {/* Botões */}
+              <CardFooter className="p-4 pt-0 flex gap-3">
                 <Button 
                   onClick={() => handleBuyClick(product)}
-                  className="flex-1 bg-blue-500 hover:bg-blue-600 text-white transition-all duration-200 transform hover:scale-105"
+                  className="flex-1 bg-blue-500 hover:bg-blue-600 text-white transition-all duration-200 transform hover:scale-105 text-sm"
                 >
                   <ShoppingCart className="mr-2 h-4 w-4" />
                   Comprar
@@ -160,7 +178,7 @@ export const Products = () => {
                 <Button 
                   variant="outline" 
                   onClick={() => handleViewMore(product)}
-                  className="hover:border-blue-500 hover:text-blue-500 transition-all duration-200"
+                  className="hover:border-blue-500 hover:text-blue-500 transition-all duration-200 px-3 text-sm"
                 >
                   <Eye className="h-4 w-4" />
                 </Button>
@@ -177,7 +195,7 @@ export const Products = () => {
           </div>
         )}
 
-        {/* Payment Modal */}
+        {/* Modal de pagamento */}
         <PaymentModal
           product={selectedProduct}
           isOpen={isPaymentModalOpen}
