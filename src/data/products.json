@@ -4,10 +4,10 @@
     "title": "Suporte Ovelha",
     "description": "Suporte de papel em formato de ovelha.",
     "price": "R$ 19,90",
-    "image": "/imgs/Suporte Ovelha (1).jpg",
+    "image": "/imgs/Suporte Ovelha (2).jpg",
     "images": [
       "/imgs/Suporte Ovelha (1).jpg",
-      "/imgs/Suporte Ovelha (2).jpg",
+      "/imgs/Suporte Ovelha (4).jpg",
       "/imgs/Suporte Ovelha (3).jpg"
     ],
     "category": "Utilitários",
@@ -18,7 +18,7 @@
     "title": "Suporte cactus preto para toalhas.",
     "description": "Suporte cactus preto para toalhas.",
     "price": "R$ 8,90",
-    "image": "/imgs/Suporte Cactus Preto (1).jpg",
+    "image": "/imgs/Suporte Cactus Preto (2).jpg",
     "images": [
       "/imgs/Suporte Cactus Preto (1).jpg",
       "/imgs/Suporte Cactus Preto (2).jpg",
@@ -32,7 +32,7 @@
     "title": "Suporte Cactus Verde",
     "description": "Suporte cactus verde para toalhas.",
     "price": "R$ 8,90",
-    "image": "/imgs/Suporte Cactus Verde (1).jpg",
+    "image": "/imgs/Suporte Cactus Verde (2).jpg",
     "images": [
       "/imgs/Suporte Cactus Verde (1).jpg",
       "/imgs/Suporte Cactus Verde (2).jpg",
@@ -46,7 +46,7 @@
     "title": "Suporte cactus verde para toalhasl",
     "description": "Suporte cactus preto para toalhas",
     "price": "R$ 8,90",
-    "image": "/imgs/Suporte Cactus Azul (1).jpg",
+    "image": "/imgs/Suporte Cactus Azul (5).jpg",
     "images": [
       "/imgs/Suporte Cactus Azul (1).jpg",
       "/imgs/Suporte Cactus Azul (2).jpg",
@@ -60,7 +60,7 @@
     "title": "Suporte de Toalha Barco Vermelho",
     "description": "Suporte de Toalha Barco Vermelho.",
     "price": "R$ 8,90",
-    "image": "/imgs/Suporte Barco Vermelho (1).jpg",
+    "image": "/imgs/Suporte Barco Vermelho (2).jpg",
     "images": [
       "/imgs/Suporte Barco Vermelho (1).jpg",
       "/imgs/Suporte Barco Vermelho (2).jpg",
@@ -102,11 +102,11 @@
     "title": "Suporte Escova",
     "description": "Suporte para escova de dente, mantém fora da umidade e permanece limpo sempre.",
     "price": "R$ 18,90",
-    "image": "/imgs/Suporte Escova (1).jpg",
+    "image": "/imgs/Suporte Escova (1).png",
     "images": [
-      "/imgs/Suporte Escova (1).jpg",
-      "/imgs/Suporte Escova (2).jpg",
-      "/imgs/Suporte Escova (3).jpg"
+      "/imgs/Suporte Escova (1).png",
+      "/imgs/Suporte Escova (2).png",
+      "/imgs/Suporte Escova (3).png"
     ],
     "category": "Utilitários",
     "active": true
